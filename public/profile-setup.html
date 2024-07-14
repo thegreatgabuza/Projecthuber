@@ -1,0 +1,66 @@
+<!-- public/profile-setup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectHub - Profile Setup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile-setup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">Project</span>Hub</h1>
+            <p>Complete your profile</p>
+
+            
+        </header>
+        <main>
+            <form id="profileSetupForm" class="profile-setup-form">
+                <div class="input-group">
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <select id="courseSelect" required>
+                        <option value="">Select Course</option>
+                        <option value="computer_science">Computer Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="business">Business</option>
+                        <!-- Add more course options as needed -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <select id="yearSelect" required>
+                        <option value="">Select Year</option>
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                    </select>
+                </div>
+                <button type="submit">Complete Profile</button>
+            </form>
+        </main>
+        <footer>
+            <p>&copy; 2023 ProjectHub. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js';
+        import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js';
+
+        // Firebase configuration and initialization will be handled in firebase-config.js
+    </script>
+
+    <!-- Custom scripts -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/profile-setup.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
