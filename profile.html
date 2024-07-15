@@ -6,6 +6,7 @@
     <title>ProjectHub - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/profile.css">
 </head>
 <body>
     <div class="container">
@@ -17,6 +18,7 @@
                     <li><a href="my-projects.html">My Projects</a></li>
                     <li><a href="browse-projects.html">Browse Projects</a></li>
                     <li><a href="project-upload.html">Upload Project</a></li>
+                    <li><a href="profile.html">Profile</a></li>
                     <li><a href="#" id="logoutBtn">Logout</a></li>
                 </ul>
             </nav>
@@ -27,13 +29,13 @@
                 <div class="profile-image">
                     <img id="profileImage" src="public/images/default-profile.png" alt="Profile Image" onclick="document.getElementById('profileImageInput').click();">
                     <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
-                    <button id="removeProfileImageBtn">Remove Profile Image</button>
+                    <button id="removeProfileImageBtn" class="btn">Remove Profile Image</button>
                 </div>
                 <div class="profile-info">
                     <p><strong>Name:</strong> <span id="profileFullName"></span></p>
                     <p><strong>Course:</strong> <span id="profileCourse"></span></p>
                     <p><strong>Year:</strong> <span id="profileYear"></span></p>
-                    <button id="editProfileBtn">Edit Profile</button>
+                    <button id="editProfileBtn" class="btn">Edit Profile</button>
                 </div>
             </div>
 
@@ -51,7 +53,6 @@
                             <option value="computer_science">Computer Science</option>
                             <option value="engineering">Engineering</option>
                             <option value="business">Business</option>
-                            <!-- Add more course options as needed -->
                         </select>
                     </div>
                     <div class="input-group">
@@ -64,39 +65,27 @@
                             <option value="4">Year 4</option>
                         </select>
                     </div>
-                    <button type="submit">Save Changes</button>
+                    <button type="submit" class="btn">Save Changes</button>
                 </form>
             </div>
         </main>
         <footer>
             <p>&copy; 2024 ProjectHuber. All rights reserved.</p>
         </footer>
-
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // Get the current year
                 var currentYear = new Date().getFullYear();
-
-                // Select the paragraph inside the footer
                 var copyrightParagraph = document.querySelector("footer p");
-
-                // Update the innerHTML of the paragraph with the current year
                 copyrightParagraph.innerHTML = '&copy; ' + currentYear + ' ProjectHuber. All rights reserved.';
             });
         </script>
     </div>
-
-    <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
         import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js';
         import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js';
-
-        // Firebase configuration and initialization will be handled in firebase-config.js
     </script>
-
-    <!-- Custom scripts -->
     <script type="module" src="public/js/firebase-config.js"></script>
     <script type="module" src="public/js/profile.js"></script>
 </body>

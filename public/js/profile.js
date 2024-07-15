@@ -1,3 +1,5 @@
+// public/js/profile.js
+
 import { auth, db, storage } from './firebase-config.js';
 import { doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
@@ -34,14 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     profileImageInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
+        console.log('File selected:', file);
         if (file) {
             try {
                 const storageRef = ref(storage, `profileImages/${currentUser.uid}`);
                 await uploadBytes(storageRef, file);
+                console.log('File uploaded to storage');
                 const downloadURL = await getDownloadURL(storageRef);
-                await updateDoc(doc(db, 'users', currentUser.uid), {
-                    profileImageUrl: downloadURL
-                });
+                console.log('Download URL:', downloadURL);
+                await updateDoc(doc(db, 'users', currentUser.uid), { profileImageUrl: downloadURL });
+                console.log('Profile image URL updated in Firestore');
                 profileImage.src = downloadURL;
             } catch (error) {
                 console.error('Error uploading profile image:', error);
@@ -54,9 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const storageRef = ref(storage, `profileImages/${currentUser.uid}`);
             await deleteObject(storageRef);
-            await updateDoc(doc(db, 'users', currentUser.uid), {
-                profileImageUrl: ''
-            });
+            await updateDoc(doc(db, 'users', currentUser.uid), { profileImageUrl: '' });
             profileImage.src = 'public/images/default-profile.png';
         } catch (error) {
             console.error('Error removing profile image:', error);
@@ -101,11 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 profileFullName.textContent = userData.fullName || 'User';
                 profileCourse.textContent = userData.course ? userData.course.replace('_', ' ').toUpperCase() : 'N/A';
                 profileYear.textContent = userData.year ? `Year ${userData.year}` : 'N/A';
-                if (userData.profileImageUrl) {
-                    profileImage.src = userData.profileImageUrl;
-                } else {
-                    profileImage.src = 'public/images/default-profile.png';
-                }
+                profileImage.src = userData.profileImageUrl || 'public/images/default-profile.png';
             } else {
                 console.log('No such document!');
             }
