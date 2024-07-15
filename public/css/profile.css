@@ -1,0 +1,109 @@
+/* public/css/profile.css */
+.profile-card {
+    background-color: var(--input-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--highlight-color);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.profile-image img:hover {
+    border-color: var(--button-hover);
+}
+
+.profile-image button {
+    margin-top: 1rem;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info p {
+    margin-bottom: 0.5rem;
+}
+
+.edit-profile-form {
+    background-color: var(--input-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--highlight-color);
+}
+
+.btn {
+    background-color: var(--button-bg);
+    color: var(--bg-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-card,
+    .edit-profile-form {
+        max-width: 100%;
+        padding: 1rem;
+    }
+}

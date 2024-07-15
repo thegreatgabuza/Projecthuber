@@ -1,13 +1,12 @@
-<!-- public/dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProjectHub - Dashboard</title>
+    <title>ProjectHub - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/profile.css">
 </head>
 <body>
     <div class="container">
@@ -25,29 +24,40 @@
             </nav>
         </header>
         <main>
-            <h2>Welcome, <span id="userName"></span>!</h2>
-            
-            <div id="userInfo" class="user-info">
-                <p>Course: <span id="userCourse"></span></p>
-                <p>Year: <span id="userYear"></span></p>
-                <button id="editUserInfoBtn">Edit</button>
+            <h2>Profile</h2>
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img id="profileImage" src="public/images/default-profile.png" alt="Profile Image" onclick="document.getElementById('profileImageInput').click();">
+                    <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+                    <button id="removeProfileImageBtn" class="btn">Remove Profile Image</button>
+                </div>
+                <div class="profile-info">
+                    <p><strong>Name:</strong> <span id="profileFullName"></span></p>
+                    <p><strong>Course:</strong> <span id="profileCourse"></span></p>
+                    <p><strong>Year:</strong> <span id="profileYear"></span></p>
+                    <button id="editProfileBtn" class="btn">Edit Profile</button>
+                </div>
             </div>
 
-            <!-- Course and Year Selection Form -->
-            <div id="courseYearForm" class="course-year-form">
-                <h3>Update your course and year</h3>
-                <form id="courseYearSelectForm">
+            <div id="editProfileForm" class="edit-profile-form">
+                <h3>Edit Profile</h3>
+                <form id="profileForm">
                     <div class="input-group">
-                        <select id="courseSelect" required>
+                        <label for="editFullName">Full Name</label>
+                        <input type="text" id="editFullName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="editCourse">Course</label>
+                        <select id="editCourse" required>
                             <option value="">Select Course</option>
                             <option value="computer_science">Computer Science</option>
                             <option value="engineering">Engineering</option>
                             <option value="business">Business</option>
-                            <!-- Add more course options as needed -->
                         </select>
                     </div>
                     <div class="input-group">
-                        <select id="yearSelect" required>
+                        <label for="editYear">Year</label>
+                        <select id="editYear" required>
                             <option value="">Select Year</option>
                             <option value="1">Year 1</option>
                             <option value="2">Year 2</option>
@@ -55,52 +65,28 @@
                             <option value="4">Year 4</option>
                         </select>
                     </div>
-                    <button type="submit">Save</button>
+                    <button type="submit" class="btn">Save Changes</button>
                 </form>
-            </div>
-
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <h3>My Projects</h3>
-                    <p id="myProjectsCount">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Downloaded Projects</h3>
-                    <p id="downloadedProjectsCount">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Others Rating Your Projects</h3>
-                    <p id="averageRating">N/A</p>
-                </div>
-            </div>
-
-            <div id="projectAnalytics" class="project-analytics">
-                <h3>Project Analytics</h3>
-                <p>Total Downloads: <span id="totalDownloads">0</span></p>
-                <p>Overall Average Rating: <span id="overallAverageRating">N/A</span></p>
             </div>
         </main>
         <footer>
             <p>&copy; 2024 ProjectHuber. All rights reserved.</p>
         </footer>
-        
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // Get the current year
                 var currentYear = new Date().getFullYear();
-        
-                // Select the paragraph inside the footer
-                // Assuming there's only one <p> tag inside the <footer>, otherwise consider adding an id or class for specificity
                 var copyrightParagraph = document.querySelector("footer p");
-        
-                // Update the innerHTML of the paragraph with the current year
                 copyrightParagraph.innerHTML = '&copy; ' + currentYear + ' ProjectHuber. All rights reserved.';
             });
         </script>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js';
+        import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js';
+    </script>
     <script type="module" src="public/js/firebase-config.js"></script>
-    <script type="module" src="public/js/dashboard.js"></script>
+    <script type="module" src="public/js/profile.js"></script>
 </body>
 </html>
