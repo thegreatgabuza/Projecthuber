@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><span class="highlight">Project</span>Hub</h1>
+            <h1><span class="highlight">Project</span>Huber</h1>
             <p>Complete your profile</p>
 
             
@@ -44,8 +44,22 @@
             </form>
         </main>
         <footer>
-            <p>&copy; 2023 ProjectHub. All rights reserved.</p>
+            <p>&copy; 2024 ProjectHuber. All rights reserved.</p>
         </footer>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Get the current year
+                var currentYear = new Date().getFullYear();
+        
+                // Select the paragraph inside the footer
+                // Assuming there's only one <p> tag inside the <footer>, otherwise consider adding an id or class for specificity
+                var copyrightParagraph = document.querySelector("footer p");
+        
+                // Update the innerHTML of the paragraph with the current year
+                copyrightParagraph.innerHTML = '&copy; ' + currentYear + ' ProjectHuber. All rights reserved.';
+            });
+        </script>
     </div>
 
     <!-- Firebase SDK -->

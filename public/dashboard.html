@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><span class="highlight">Project</span>Hub</h1>
+            <h1><span class="highlight">Project</span>Huber</h1>
             <nav>
                 <ul>
                     <li><a href="dashboard.html" class="active">Dashboard</a></li>
@@ -26,9 +26,15 @@
         <main>
             <h2>Welcome, <span id="userName"></span>!</h2>
             
+            <div id="userInfo" class="user-info">
+                <p>Course: <span id="userCourse"></span></p>
+                <p>Year: <span id="userYear"></span></p>
+                <button id="editUserInfoBtn">Edit</button>
+            </div>
+
             <!-- Course and Year Selection Form -->
             <div id="courseYearForm" class="course-year-form">
-                <h3>Please select your course and year</h3>
+                <h3>Update your course and year</h3>
                 <form id="courseYearSelectForm">
                     <div class="input-group">
                         <select id="courseSelect" required>
@@ -62,21 +68,37 @@
                     <p id="downloadedProjectsCount">0</p>
                 </div>
                 <div class="stat-card">
-                    <h3>Average Rating</h3>
+                    <h3>Others Rating Your Projects</h3>
                     <p id="averageRating">N/A</p>
                 </div>
             </div>
-            <div class="recent-activity">
-                <h3>Recent Activity</h3>
-                <ul id="recentActivityList">
-                    <!-- Recent activity items will be dynamically added here -->
-                </ul>
+
+            <div id="projectAnalytics" class="project-analytics">
+                <h3>Project Analytics</h3>
+                <p>Total Downloads: <span id="totalDownloads">0</span></p>
+                <p>Overall Average Rating: <span id="overallAverageRating">N/A</span></p>
             </div>
         </main>
         <footer>
-            <p>&copy; 2023 ProjectHub. All rights reserved.</p>
+            <p>&copy; 2024 ProjectHuber. All rights reserved.</p>
         </footer>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Get the current year
+                var currentYear = new Date().getFullYear();
+        
+                // Select the paragraph inside the footer
+                // Assuming there's only one <p> tag inside the <footer>, otherwise consider adding an id or class for specificity
+                var copyrightParagraph = document.querySelector("footer p");
+        
+                // Update the innerHTML of the paragraph with the current year
+                copyrightParagraph.innerHTML = '&copy; ' + currentYear + ' ProjectHuber. All rights reserved.';
+            });
+        </script>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/dashboard.js"></script>
 </body>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectHub - Browse Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/browse-projects.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">Project</span>Huber</h1>
+            <p>Browse Projects</p>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="my-projects.html">My Projects</a></li>
+                    <li><a href="browse-projects.html" class="active">Browse Projects</a></li>
+                    <li><a href="project-upload.html">Upload Project</a></li>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="projects-header">
+                <h2>Browse Projects</h2>
+                <div class="projects-controls">
+                    <div class="sort-container">
+                        <label for="sortSelect">Sort by:</label>
+                        <select id="sortSelect">
+                            <option value="date">Date</option>
+                            <option value="name">Name</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search projects...">
+                </div>
+            </div>
+            <div id="projects-container" class="projects-grid"></div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 ProjectHub. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Modal for viewing project details -->
+    <div id="viewProjectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="viewProjectName"></h2>
+            <p id="viewProjectDescription"></p>
+            <p id="viewProjectUploader"></p>
+            <p id="viewProjectDate"></p>
+            <div id="viewProjectFiles"></div>
+            <button id="downloadAllBtn" class="download-btn">Download All Files</button>
+            <div id="ratingContainer">
+                <p>Rate this project:</p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">&#9733;</span>
+                    <span class="star" data-rating="2">&#9733;</span>
+                    <span class="star" data-rating="3">&#9733;</span>
+                    <span class="star" data-rating="4">&#9733;</span>
+                    <span class="star" data-rating="5">&#9733;</span>
+                </div>
+                <p id="averageRating">Average Rating: <span></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js';
+        import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js';
+    </script>
+
+    <!-- Custom scripts -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/browse-projects.js"></script>
+</body>
+</html>
