@@ -76,8 +76,9 @@ async function loadRecentActivity() {
     recentActivityList.innerHTML = activities.map(activity => `<li>${activity}</li>`).join('');
 }
 
+// Edit button click event to redirect to profile.html
 editUserInfoBtn.addEventListener('click', () => {
-    courseYearForm.style.display = 'block';
+    window.location.href = 'profile.html'; // Redirect to profile page
 });
 
 courseYearSelectForm.addEventListener('submit', async (e) => {
@@ -266,37 +267,11 @@ const profileUpdateForm = document.getElementById('profileUpdateForm');
 if (profileUpdateForm) {
     profileUpdateForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const fullName = document.getElementById('profileName').value;
-        const email = document.getElementById('profileEmail').value;
+        const fullName = document.getElementById('fullNameInput').value;
+        const email = document.getElementById('emailInput').value;
         await updateUserProfile(fullName, email);
     });
 }
 
-async function getUserDownloadCount() {
-    try {
-        const user = auth.currentUser;
-        if (user) {
-            const userDoc = await getDoc(doc(db, 'users', user.uid));
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                return userData.downloadCount || 0;
-            }
-        }
-        return 0;
-    } catch (error) {
-        console.error('Error retrieving user download count:', error);
-        return 0;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            const downloadCount = await getUserDownloadCount();
-            document.getElementById('downloadedProjectsCount').textContent = downloadCount;
-        } else {
-            window.location.href = 'index.html';
-        }
-    });
-});
+export { updateUserProfile };
 
